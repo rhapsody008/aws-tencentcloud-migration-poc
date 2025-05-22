@@ -1,22 +1,21 @@
 terraform {
-    required_providers {
-        tencentcloud = {
-            source  = "tencentcloud/tencentcloud"
-            version = "~> 1.0"
-        }
-        aws = {
-            source  = "hashicorp/aws"
-            version = "~> 4.0"
-        }
+  required_providers {
+    tencentcloud = {
+      source = "tencentcloudstack/tencentcloud"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
 }
 
 provider "tencentcloud" {
-    region = var.region["tencentcloud"]
-    # Configuration for Tencent Cloud provider
+  region = var.region["tencentcloud"]
+  # Configuration for Tencent Cloud provider
 }
 
 provider "aws" {
-    region = var.region["aws"]
-    # Configuration for AWS provider
+  region  = var.region["aws"]
+  profile = "default"
 }

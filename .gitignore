@@ -2,21 +2,22 @@
 **/.terraform/*
 
 # .tfstate files
-*.tfstate
-*.tfstate.*
+terraform/*.tfstate
+terraform/*.tfstate.*
 
 # Crash log files
-crash.log
+terraform/crash.log
 
 # Exclude override files as they are usually used to override resources locally
-override.tf
-override.tf.json
-*_override.tf
-*_override.tf.json
+terraform/override.tf
+terraform/override.tf.json
+terraform/*_override.tf
+terraform/*_override.tf.json
 
 # Ignore CLI configuration files
-.terraformrc
-terraform.rc
+terraform/.terraformrc
+terraform/terraform.rc
 
 ## custom
 .DS_Store
+terraform/.terraform.lock.hcl
