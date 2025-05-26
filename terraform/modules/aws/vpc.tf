@@ -13,7 +13,7 @@ resource "aws_vpc" "zy_test_aws_vpc" {
 
 resource "aws_subnet" "zy_test_aws_subnet1" {
   vpc_id                  = aws_vpc.zy_test_aws_vpc.id
-  cidr_block              = var.aws_subnet_cidr1
+  cidr_block              = var.aws_subnet1_cidr
   map_public_ip_on_launch = true
   availability_zone       = data.aws_availability_zones.available.names[0]
   tags = {
@@ -23,7 +23,7 @@ resource "aws_subnet" "zy_test_aws_subnet1" {
 
 resource "aws_subnet" "zy_test_aws_subnet2" {
   vpc_id                  = aws_vpc.zy_test_aws_vpc.id
-  cidr_block              = var.aws_subnet_cidr2
+  cidr_block              = var.aws_subnet2_cidr
   map_public_ip_on_launch = true
   availability_zone       = data.aws_availability_zones.available.names[1]
   tags = {

@@ -6,6 +6,9 @@ resource "aws_launch_template" "zy_test_aws_launch_template" {
     arn = aws_iam_instance_profile.zy_test_instance_profile.arn
   }
   image_id = var.aws_instance_ami_id
+  placement {
+    availability_zone = data.aws_availability_zones.available.names[0]
+  }
 
   block_device_mappings {
     device_name = "/dev/sda1"

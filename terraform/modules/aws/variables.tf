@@ -18,12 +18,12 @@ variable "aws_vpc_cidr" {
   type        = string
 }
 
-variable "aws_subnet_cidr1" {
+variable "aws_subnet1_cidr" {
   description = "The CIDR block for the subnet1"
   type        = string
 }
 
-variable "aws_subnet_cidr2" {
+variable "aws_subnet2_cidr" {
   description = "The CIDR block for the subnet2"
   type        = string
 }
