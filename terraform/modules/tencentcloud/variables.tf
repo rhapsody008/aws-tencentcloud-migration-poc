@@ -19,11 +19,11 @@ variable "tencentcloud_subnet2_cidr" {
 }
 
 variable "tencentcloud_cvm_image_id" {
-    description = "The image ID for the CVM instances"
-    type        = string
+  description = "The image ID for the CVM instances"
+  type        = string
 }
 
 variable "tencentcloud_cvm_instance_type" {
-    description = "The instance type for the CVM instances"
-    type        = string
+  description = "The instance type for the CVM instances"
+  type        = string
 }

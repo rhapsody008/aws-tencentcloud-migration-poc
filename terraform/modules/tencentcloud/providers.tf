@@ -7,6 +7,6 @@ terraform {
 }
 
 provider "tencentcloud" {
-  region = var.tencentcloud_region
+  region  = var.tencentcloud_region
   profile = "default"
 }

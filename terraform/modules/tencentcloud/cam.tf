@@ -27,9 +27,8 @@ resource "tencentcloud_cam_policy" "zy_test_cvm_policy" {
     {
       "action": [
         "cdb:Describe*",
-        "cdb:List*",
         "monitor:Describe*",
-        "monitor:Get*",
+        "monitor:Get*"
       ],
       "effect": "allow",
       "resource": [
@@ -42,6 +41,6 @@ EOF
 }
 
 resource "tencentcloud_cam_role_policy_attachment" "ro_policy_attachment" {
-    role_id = tencentcloud_cam_role.zy_test_cvm_role.id
-    policy_id = tencentcloud_cam_policy.zy_test_cvm_policy.id
+  role_id   = tencentcloud_cam_role.zy_test_cvm_role.id
+  policy_id = tencentcloud_cam_policy.zy_test_cvm_policy.id
 }

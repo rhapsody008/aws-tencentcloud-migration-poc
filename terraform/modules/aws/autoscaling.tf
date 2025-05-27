@@ -76,10 +76,11 @@ EOF
 }
 
 resource "aws_autoscaling_group" "zy_test_aws_asg" {
-  name_prefix         = var.aws_resource_prefix
-  desired_capacity    = 3
-  max_size            = 6
-  min_size            = 2
+  name_prefix      = var.aws_resource_prefix
+  desired_capacity = 3
+  max_size         = 6
+  min_size         = 2
+
   vpc_zone_identifier = [aws_subnet.zy_test_aws_subnet1.id, aws_subnet.zy_test_aws_subnet2.id]
   launch_template {
     id      = aws_launch_template.zy_test_aws_launch_template.id
@@ -109,24 +110,15 @@ resource "aws_autoscaling_group" "zy_test_aws_asg" {
 }
 
 resource "aws_autoscaling_policy" "zy_test_aws_asg_scale_out" {
-  name                   = "${var.aws_resource_prefix}-scale-out"
-  scaling_adjustment     = 3
+  name                   = "${var.aws_resource_prefix}scale-out"
   adjustment_type        = "ChangeInCapacity"
-  cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.zy_test_aws_asg.name
-}
 
-resource "aws_cloudwatch_metric_alarm" "zy_test_aws_asg_high_cpu" {
-  alarm_name          = "${var.aws_resource_prefix}-high-cpu"
-  comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 2
-  metric_name         = "CPUUtilization"
-  namespace           = "AWS/EC2"
-  period              = 300
-  statistic           = "Average"
-  threshold           = 70
-  alarm_actions       = [aws_autoscaling_policy.zy_test_aws_asg_scale_out.arn]
-  dimensions = {
-    AutoScalingGroupName = aws_autoscaling_group.zy_test_aws_asg.name
+  policy_type = "TargetTrackingScaling"
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 70.0
   }
 }

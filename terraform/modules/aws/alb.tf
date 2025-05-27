@@ -4,8 +4,6 @@ resource "aws_lb" "zy_test_aws_alb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.zy_test_aws_sg.id]
   subnets            = [aws_subnet.zy_test_aws_subnet1.id, aws_subnet.zy_test_aws_subnet2.id]
-
-  enable_deletion_protection = false
 }
 
 resource "aws_lb_target_group" "zy_test_aws_tg" {

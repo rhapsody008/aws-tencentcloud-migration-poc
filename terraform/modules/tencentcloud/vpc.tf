@@ -1,5 +1,6 @@
-data "tencentcloud_availability_zones" "available" {
-  include_unavailable = false
+data "tencentcloud_availability_zones_by_product" "available" {
+  product             = "cvm"
+  include_unavailable = "false"
 }
 
 resource "tencentcloud_vpc" "zy_test_tencentcloud_vpc" {
@@ -11,14 +12,14 @@ resource "tencentcloud_subnet" "zy_test_tencentcloud_subnet1" {
   name              = "zy_test_tencentcloud_subnet1"
   vpc_id            = tencentcloud_vpc.zy_test_tencentcloud_vpc.id
   cidr_block        = var.tencentcloud_subnet1_cidr
-  availability_zone = data.tencentcloud_availability_zones.available.name[0]
+  availability_zone = data.tencentcloud_availability_zones_by_product.available.zones[1].name
 }
 
 resource "tencentcloud_subnet" "zy_test_tencentcloud_subnet2" {
   name              = "zy_test_tencentcloud_subnet2"
   vpc_id            = tencentcloud_vpc.zy_test_tencentcloud_vpc.id
   cidr_block        = var.tencentcloud_subnet2_cidr
-  availability_zone = data.tencentcloud_availability_zones.available.name[1]
+  availability_zone = data.tencentcloud_availability_zones_by_product.available.zones[2].name
 }
 
 resource "tencentcloud_route_table" "zy_test_tencentcloud_route_table" {
